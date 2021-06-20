@@ -14,7 +14,6 @@ int main(){
     cout<<"Enter the element to be searched:";
     cin>>item;                                      //input element to be searched
 
-    
     for(i=0;i<max;i++)              
        if(int_array[i]==item){                      //check if entered element matches the array element
            count++;                                    //if matched increment the count
