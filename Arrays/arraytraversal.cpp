@@ -10,7 +10,7 @@ int main(){
     for(i=0;i<max;i++)              
         cin>>int_array[i];
     
-    cout<<"The elements of the array are:\n";
+    cout<<"The elements of the array are:\n";		//printing the array elements
     for(i=0;i<max;i++)              
         cout<<int_array[i]<<"\n";
 
