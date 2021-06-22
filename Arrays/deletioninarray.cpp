@@ -12,7 +12,7 @@ int main(){
     for(i=0;i<arrSize;i++)              
         cin>>int_array[i];
     
-    cout<<"On what basis would you like to delete the element?\n1.Value\t2.Position?\n";
+    cout<<"On what basis would you like to delete the element?\n1.Value\t2.Position?\n";            //choice to delete by value or position
     cin>>choice;
 
     switch(choice)
@@ -23,21 +23,22 @@ int main(){
 
             for(i=0;i<arrSize;i++)
             {
-                if(int_array[i]==item)
-                {
+                if(int_array[i]==item)                          //if item found
+                {                                               //then shift elements to start by one location 
                     for(j=i;j<arrSize-1;j++){
                         int_array[j]=int_array[j+1];
                     }
-                    arrSize--;
+                    i--;                                    //decrementing i after element location change
+                    arrSize--;                                  //modifying array size after deletion
                 }
             }            
             break;
 
         case 2:
-            cout<<"Enter the position to insert element:";          //position to insert element
+            cout<<"Enter the position to delete element:";          //position to insert element
             cin>>pos;
 
-            for(j=pos;j<arrSize-1;j++){
+            for(j=pos-1;j<arrSize-1;j++){
                 int_array[j]=int_array[j+1];
             }
             arrSize--;
