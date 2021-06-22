@@ -20,7 +20,7 @@ int main(){
         case 1:
             cout<<"Enter the element:";                         //value of the element
             cin>>item;
-            int loc,j;
+
             for(i=0;i<arrSize;i++)
             {
                 if(int_array[i]==item)
@@ -36,6 +36,11 @@ int main(){
         case 2:
             cout<<"Enter the position to insert element:";          //position to insert element
             cin>>pos;
+
+            for(j=pos;j<arrSize-1;j++){
+                int_array[j]=int_array[j+1];
+            }
+            arrSize--;
             break;
     }
 
