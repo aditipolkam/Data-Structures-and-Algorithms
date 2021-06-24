@@ -8,13 +8,49 @@ Practical No. 1 : In a second year computer engineering class, group A students 
                    d) Number of students who play cricket and football but not badminton.
 (NOTE : While realising the group, duplicate entries should be avoided. Do not use SET built-in functions)
 ''' 
+import sys
 #function to remove duplicate values
-def removeDuplicate(d):
-    lst=[]
-    for i in d:
-        if i not in lst:
-            lst.append(i)
-    return lst
+def removeDuplicate(o_list):
+    m_list=[]
+    for i in o_list:
+        if i not in m_list:
+            m_list.append(i)
+    return m_list
+
+#function for union
+def union(list1,list2):
+    u_list = list1.copy()
+    for i in list2:
+        if i not in u_list:
+            u_list.append(i)
+    return u_list
+
+
+#function for intersection
+def intersection(list1,list2):
+    i_list = []
+    for i in list1:
+        if i in list2:
+            i_list.append(i)
+    return i_list
+
+#function for difference
+def difference(list1,list2):
+    d_list = []
+    for i in list1:
+        if i not in list2:
+            d_list.append(i)
+    return d_list
+
+#function for symmetric difference
+def symm_diff(list1,list2):
+    s_list = union(difference(list1,list2),difference(list2,list1))
+    return s_list
+
+#print function
+def userchoice():
+    choice = input("\nDo you want to continue? Type yes/no.")
+    return choice
 
 #universal set of students
 SEComp = []
@@ -22,6 +58,7 @@ total = int(input("Enter the total number of students in class:"))
 for i in range(0,total):
     name = input()
     SEComp.append(name)
+SEComp = removeDuplicate(SEComp)
 
 #set of students playing cricket
 cricket = []
@@ -45,30 +82,41 @@ for i in range(0,f_total):
     football.append(f_name)
 
 
-print("List of students:",+ str(SEComp))
+print("List of students:", str(SEComp))
+print("Cricket:",str(cricket))
+print("Badminton:",str(badminton))
+print("Football:",str(football))
 
 choice = "yes"
 while choice == "yes":
     print("1.List of students who play both cricket and badminton.")
-    print("2.List of students who play either cricket and badminton but not both.")
+    print("2.List of students who play either cricket or badminton but not both.")
     print("3.Number of students who play neither cricket nor badminton.")
     print("4.Number of students cricket and football but not badminton.")
     print("5.Exit menu")
     op = int(input("Enter your choice:"))
     
     if op == 1:
-        #
+        f_list = intersection(cricket,badminton)
+        print("List of students who play both cricket and badminton is :\n", f_list)
+
     elif op == 2:
-        #
-    elif op == 3:
+        f_list = symm_diff(cricket,badminton)
+        print("List of students who play either cricket or badminton but not both is :\n", f_list)
     
+    elif op == 3:
+        f_list = difference(SEComp,union(cricket,badminton))
+        print("Number of students who play neither cricket nor badminton", len(f_list))
+
     elif op == 4:
+        f_list = difference(intersection(cricket,football),badminton)
+        print("Number of students cricket and football but not badminton", len(f_list))
 
     elif op == 5:
+        choice = "no"
+        sys.exit()
 
     else:
-        choice = "no"
+        print("Wrong Choice")
 
-    choice = input("Do you want to continue? Type yes/no.")
-
-#to be continued
+    userchoice()
