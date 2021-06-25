@@ -9,13 +9,6 @@ Practical No. 1 : In a second year computer engineering class, group A students 
 (NOTE : While realising the group, duplicate entries should be avoided. Do not use SET built-in functions)
 ''' 
 import sys
-#function to remove duplicate values
-def removeDuplicate(o_list):
-    m_list=[]
-    for i in o_list:
-        if i not in m_list:
-            m_list.append(i)
-    return m_list
 
 #function for union
 def union(list1,list2):
