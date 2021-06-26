@@ -1,4 +1,4 @@
-//matrix addition program
+//matrix multiplication program
 
 #include<iostream>
 using namespace std;
