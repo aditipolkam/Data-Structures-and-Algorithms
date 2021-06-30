@@ -1,6 +1,5 @@
 //program to insert nodes in a linked list
 #include<iostream>
-#include<string>
 using namespace std;
 
 //create node structure
@@ -102,5 +101,5 @@ int main(){
 
     cout<<"Created linked list is:\n";
     printlist(head);
-
+    return 0;
 }
