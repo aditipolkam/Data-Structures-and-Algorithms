@@ -15,25 +15,27 @@ struct Node
     }
 };
 
-void insert(struct Node *root, int value)
+void insert(struct Node *node, int value)
 {
-    if(root == NULL)
+    if(root == NULL){
         root = new Node(value);
-    if(root->data>value){
-        if(root->left == NULL){
-            root->left = new Node(value);
-            cout<<"inserted "<<value<<"\t";
-            return;
-        }
-        insert(root->left,value);
+        return;
     }
-    else if(root->data < value){
-        if(root->right == NULL){
-            root->right == new Node(value);
+    if(node->data>value){
+        if(node->left == NULL){
+            node->left = new Node(value);
             cout<<"inserted "<<value<<"\t";
             return;
         }
-        insert(root->right,value);
+        insert(node->left,value);
+    }
+    else if(node->data < value){
+        if(node->right == NULL){
+            node->right == new Node(value);
+            cout<<"inserted "<<value<<"\t";
+            return;
+        }
+        insert(node->right,value);
     }
 
 }
