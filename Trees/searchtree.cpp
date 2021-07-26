@@ -2,90 +2,60 @@
 
 using namespace std;
 
-struct Node
-{
+class Node{
     int data;
-    struct Node *left, *right;
-    
-    Node(int val)
-    {
-        data = val;
-        left = NULL;
-        right = NULL;
-    }
+    Node *left, *right;
+    public:
+
+        Node(){
+            data = 0;
+            left = right = NULL;
+        }
+
+        Node(int val){
+            data = val;
+            left = right = NULL;
+        }
+
+        Node* insert(Node* root, int value){
+            if(root == NULL){
+                return new Node(value);
+            }
+            if(value > root->data){
+                root->right = insert(root->right,value);
+            }
+            else{
+                root->left = insert(root->left,value);
+            }
+            return root;
+        }
+
+        void inorder(Node *node)
+        {
+            if(node == NULL)
+                return;
+            
+            inorder(node->left);
+            cout<<node->data<<"\t";
+            inorder(node->right);
+        }
 };
 
-void insert(struct Node *node, int value)
-{
-    if(root == NULL){
-        root = new Node(value);
-        return;
-    }
-    if(node->data>value){
-        if(node->left == NULL){
-            node->left = new Node(value);
-            cout<<"inserted "<<value<<"\t";
-            return;
-        }
-        insert(node->left,value);
-    }
-    else if(node->data < value){
-        if(node->right == NULL){
-            node->right == new Node(value);
-            cout<<"inserted "<<value<<"\t";
-            return;
-        }
-        insert(node->right,value);
-    }
-
-}
-void preorder(struct Node *node)
-{
-    if(node == NULL)
-        return;
-    
-    cout<<node->data<<"\t";
-    preorder(node->left);
-    preorder(node->right);
-}
-
-void postorder(struct Node *node)
-{
-    if(node == NULL)
-        return;
-    
-    postorder(node->left);
-    postorder(node->right);
-    cout<<node->data<<"\t";
-}
-
-void inorder(struct Node *node)
-{
-    if(node == NULL)
-        return;
-    
-    inorder(node->left);
-    cout<<node->data<<"\t";
-    inorder(node->right);
-}
 
 int main()
 {
-    struct Node* root = new Node(5);
+    Node n, *root = NULL;
+    root =  n.insert(root,5);
     
-    insert(root,4);
-    insert(root,7);
-    insert(root,8);
-    insert(root,2);
-    insert(root,6);
-    insert(root,3);
-    
-    cout<<"Preorder:\t";
-    preorder(root);
-    cout<<"\nPostorder:\t";
-    postorder(root);
+    n.insert(root,4);
+    n.insert(root,7);
+    n.insert(root,8);
+    n.insert(root,2);
+    n.insert(root,6);
+    n.insert(root,3);
+
     cout<<"\nInorder:\t";
-    inorder(root);
+    n.inorder(root);
     
     return 0;
 }
